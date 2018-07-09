@@ -15,7 +15,7 @@ export const fadeInAndOut = el => {
 
     if (el.style.opacity <= 0) {
       clearInterval(fadeOutInterval);
-      el.style.borderTop = "30px solid #FF7412";
+      el.style.borderTop = "15px solid #FF7412";
       fadeInInterval = setInterval(fadeIn, 50);
     }
   };

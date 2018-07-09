@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./Map.css";
 import { mapContainerStyle } from "../../variables";
-import { fadeInAndOut } from "../../helpers/effects";
-import * as Api from "../../helpers/api/foursquareApiFunctions";
 import { Marker } from './Marker';
 
 class MainMap extends Component {
@@ -51,6 +49,7 @@ class MainMap extends Component {
       objects: this.markers
     });
     map.addObject(container);
+    
   };
 
   componentDidMount() {
