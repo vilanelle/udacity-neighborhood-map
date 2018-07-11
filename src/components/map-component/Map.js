@@ -3,12 +3,14 @@ import PropTypes from "prop-types";
 import "./Map.css";
 import { mapContainerStyle } from "../../variables";
 import { Marker } from './Marker';
+import SimpleDialogDemo from './MatDialog';
 
 class MainMap extends Component {
   map;
   markers = [];
 
   loadMap = () => {
+    console.log(SimpleDialogDemo)
     const platform = new window.H.service.Platform({
       app_id: "KtfSRNjpHszyGuJKbvI7",
       app_code: "8jAXhLQ2CDItBfi76Hkxyw"
@@ -58,6 +60,7 @@ class MainMap extends Component {
   }
   render() {
     return <div id="mapContainer" style={mapContainerStyle} />;
+    <SimpleDialogDemo />
   }
 }
 

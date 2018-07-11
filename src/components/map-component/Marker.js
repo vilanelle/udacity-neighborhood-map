@@ -32,7 +32,7 @@ export class Marker {
   handleMarkerClick = e => {
     const elementClicked = e.target.icon.i;
     const venueId = elementClicked.dataset.venueId;
-    Api.getVenueDetails(venueId);
+    // Api.getVenueDetails(venueId);
   };
 
   getDomMarker = () => this.domMarker;
