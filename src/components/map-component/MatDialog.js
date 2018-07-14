@@ -12,14 +12,9 @@ import Dialog from '@material-ui/core/Dialog';
 // import PersonIcon from '@material-ui/icons/Person';
 // import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
-import blue from '@material-ui/core/colors/blue';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
 const styles = {
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
+
 };
 
 class SimpleDialog extends React.Component {
@@ -27,15 +22,15 @@ class SimpleDialog extends React.Component {
       this.props.onClose(this.props.selectedValue);
     };
   
-  
     render() {
-      const { classes, onClose, selectedValue, ...other } = this.props;
+      const { classes, onClose, selectedValue, venueData, ...other } = this.props;
   
       return (
         <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
           <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+          <div>{venueData}</div>
           <div>
-            <List>blargh
+            <List>
             </List>
           </div>
         </Dialog>
@@ -51,34 +46,35 @@ class SimpleDialog extends React.Component {
   
   const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
   
-  class SimpleDialogDemo extends React.Component {
+  class MatDialog extends React.Component {
     state = {
       open: false,
-      selectedValue: emails[1],
+      venueData: ''
     };
   
-    handleClickOpen = () => {
+    handleClickOpen = (data) => {
       this.setState({
         open: true,
+        venueData: data
       });
     };
   
     handleClose = value => {
-      this.setState({ selectedValue: value, open: false });
+      this.setState({ open: false });
     };
   
     render() {
       return (
         <div>
           <SimpleDialogWrapped
-            selectedValue={this.state.selectedValue}
             open={this.state.open}
             onClose={this.handleClose}
+            venueData={this.state.venueData}
           />
         </div>
       );
     }
   }
   
-  export default SimpleDialogDemo;
+  export default MatDialog;
   

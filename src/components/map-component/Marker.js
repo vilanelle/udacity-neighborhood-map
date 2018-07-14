@@ -1,11 +1,12 @@
-import * as Api from "../../helpers/api/foursquareApiFunctions";
 import { fadeInAndOut } from "../../helpers/effects";
 
 export class Marker {
   domMarker;
+  getVenueId;
 
-  constructor(venue) {
+  constructor(venue, getVenueId) {
     this.createMarker(venue);
+    this.getVenueId = getVenueId;
   }
 
   createMarker = venue => {
@@ -29,10 +30,11 @@ export class Marker {
     this.domMarker.addEventListener("tap", this.handleMarkerClick);
   };
 
+  
   handleMarkerClick = e => {
     const elementClicked = e.target.icon.i;
     const venueId = elementClicked.dataset.venueId;
-    // Api.getVenueDetails(venueId);
+    this.getVenueId(venueId)
   };
 
   getDomMarker = () => this.domMarker;

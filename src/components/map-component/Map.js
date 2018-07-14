@@ -3,14 +3,13 @@ import PropTypes from "prop-types";
 import "./Map.css";
 import { mapContainerStyle } from "../../variables";
 import { Marker } from './Marker';
-import SimpleDialogDemo from './MatDialog';
+import { timingSafeEqual } from "crypto";
 
-class MainMap extends Component {
+class Map extends Component {
   map;
   markers = [];
 
   loadMap = () => {
-    console.log(SimpleDialogDemo)
     const platform = new window.H.service.Platform({
       app_id: "KtfSRNjpHszyGuJKbvI7",
       app_code: "8jAXhLQ2CDItBfi76Hkxyw"
@@ -37,12 +36,11 @@ class MainMap extends Component {
 
   // add marker to map
   addMarkers = map => {
-    const { venues } = this.props;
+    const { venues,  getVenueId } = this.props;
 
     // loop creating DOM elements for markers
     venues.forEach(venue => {
-      const marker = new Marker(venue);
-
+      const marker = new Marker(venue, getVenueId);
       this.markers.push(marker.getDomMarker());
     });
 
@@ -58,14 +56,17 @@ class MainMap extends Component {
     this.loadMap();
     this.addMarkers(this.map);
   }
+
   render() {
-    return <div id="mapContainer" style={mapContainerStyle} />;
-    <SimpleDialogDemo />
+    return(
+      <div id="mapContainer" style={mapContainerStyle} />
+    )
   }
 }
 
-MainMap.propTypes = {
-  markers: PropTypes.array
+Map.propTypes = {
+  venues: PropTypes.array,
+  getVenueId: PropTypes.func
 };
 
-export default MainMap;
+export default Map;

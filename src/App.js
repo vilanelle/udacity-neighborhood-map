@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import MainMap from './components/map-component/Map';
+import Map from './components/map-component/Map';
+import MatDialog from './components/map-component/MatDialog';
+import * as Api from "./helpers/api/foursquareApiFunctions";
 
 class App extends Component {
   state = {
@@ -11,13 +13,23 @@ class App extends Component {
       {name: 'Cud nad Wisłą', foursquareId: '518f8080498e9e76fac5a0af', lat: 52.2285, lng: 21.0435 },
       {name: 'Night Market', foursquareId: '5751c902498ecf01822b6dce', lat: 52.2254, lng: 20.9827}
     ],
-    usingMobile: false
+    usingMobile: false,
+    dialogData: ''
   }
-
+  
   checkUserDevice = () => {
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
       this.setState( {usingMobile: true} );
      }
+  }
+  
+  getVenueId = (id) => {
+    console.log('venue id: ', id)
+    this.setState(state => ({...state, dialogData: id}), this.openMarkerDialog(this.state.dialogData));
+  }
+
+  openMarkerDialog = (id) => {
+    this.refs.dialog.handleClickOpen(id);
   }
 
   componentDidMount() {
@@ -27,7 +39,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-         <MainMap venues={this.state.venues}/>
+        <Map 
+          venues={this.state.venues}
+          getVenueId={this.getVenueId}
+        />
+        <MatDialog ref="dialog"/>
       </div>
     );
   }
