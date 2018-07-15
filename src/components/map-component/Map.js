@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import "./Map.css";
 import { mapContainerStyle } from "../../variables";
 import { Marker } from './Marker';
-import { timingSafeEqual } from "crypto";
 
 class Map extends Component {
   map;
@@ -36,7 +35,7 @@ class Map extends Component {
 
   // add marker to map
   addMarkers = map => {
-    const { venues,  getVenueId } = this.props;
+    const { venues, getVenueId } = this.props;
 
     // loop creating DOM elements for markers
     venues.forEach(venue => {
