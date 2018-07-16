@@ -3,19 +3,37 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
-// import PersonIcon from '@material-ui/icons/Person';
-// import AddIcon from '@material-ui/icons/Add';
-import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
+import { withStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Slide from '@material-ui/core/Slide';
+import './Map.css';
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
+
+const dialogHeaderTheme = createMuiTheme({
+  typography: {
+    fontSize: 16,
+    fontWeight: 800
+  },
+});
+
+const styles = theme => ({
+	listItem: {
+    padding: '0.3rem 1.5rem'
+  },
+  avatar: {
+    float: 'left',
+    marginRight: '1rem'
+  }
+});
+
 
 class SimpleDialog extends React.Component {
     handleClose = () => {
@@ -24,7 +42,7 @@ class SimpleDialog extends React.Component {
   
     render() {
       const { classes, onClose, selectedValue, venueData, ...other } = this.props;
-  
+      
       return (
         <Dialog 
           onClose={this.handleClose} 
@@ -38,23 +56,45 @@ class SimpleDialog extends React.Component {
             },
           }}
         >
-          <DialogTitle id="simple-dialog-title">
-          <img src='./mapMarker.png' width='100px' height='100px'/>
-          {JSON.stringify(venueData)}
-            {/* <img alt={`${venueData.name}`} src={venueData.photoUrl && venueData.photoUrl}/>
-            {venueData.name && venueData.name} */}
-          </DialogTitle>
-          {/* <div>{venueData.address && `Address: ${venueData.address}`}</div>
-          <div>{venueData.website && `Website: ${venueData.website}`}</div>
-          <div>{venueData.moreDetails && `More: ${venueData.moreDetails}`}</div>  */}
-          <div>
-            <List>
-            </List>
-          </div>
+        
+        {/* <List>
+        <MuiThemeProvider theme={dialogHeaderTheme}>
+          <ListItem className={classes.listItem}>
+            <Avatar src='cud.jpg'></Avatar>
+            <ListItemText primary={venueData.title} />
+          </ListItem>
+        </MuiThemeProvider>
+          <ListItem className={classes.listItem}>
+          <ListItemText  primary={venueData.title} />
+          </ListItem>
+          <ListItem className={classes.listItem}>
+          <ListItemText primary={venueData.title} />
+          </ListItem>
+        </List>
+         */}
+          <List >
+          <MuiThemeProvider theme={dialogHeaderTheme}>
+            <DialogTitle className={classes.dialogTitle}>
+              <Avatar className={classes.avatar} src={venueData.photoUrl && venueData.photoUrl} alt={venueData.name && venueData.name}></Avatar>
+              {venueData.name}
+              {/* {venueData.name && <ListItemText primary={venueData.name}/>}  <--- this is looks nice, but probably should use dialog title..*/}
+            </DialogTitle>
+          </MuiThemeProvider>
+     
+            {venueData.address && <ListItem className={classes.listItem}>
+              <ListItemText primary={`Address: ${venueData.address}`}/>
+            </ListItem>}
+            {venueData.website && <ListItem component="a" href={venueData.website} className={classes.listItem}>
+              <ListItemText primary={`Website: ${venueData.website}`}/>
+            </ListItem>}
+            {venueData.moreDetails && <ListItem component="a" href={venueData.moreDetails} className={classes.listItem}>
+              <ListItemText primary={`Click to learn more...`}/>
+            </ListItem>}
+          </List>
           <DialogActions>
-          <Button 
-            onClick={this.handleClose}
-          >Close</Button>
+            <Button 
+              onClick={this.handleClose}
+            >Close</Button>
           </DialogActions>
         </Dialog>
       );
@@ -66,7 +106,7 @@ class SimpleDialog extends React.Component {
     selectedValue: PropTypes.string,
   };
   
-  const SimpleDialogWrapped = SimpleDialog;
+  const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
   
   class MatDialog extends React.Component {
     state = {

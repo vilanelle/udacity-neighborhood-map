@@ -61,7 +61,14 @@ class App extends Component {
 
   getVenueDetails = () => {
     return Api.getVenueDetails(this.state.dialogData)
-      .then(this.openMarkerDialog)
+      .then((data) => {
+       if(data) {
+        this.openMarkerDialog
+       } else {
+     // TODO add error dialog    
+         console.log('A network error has occurred')
+       }
+      })
       .catch(err => console.log(err));
   };
 
