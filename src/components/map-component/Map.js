@@ -53,7 +53,7 @@ class Map extends Component {
 
   componentDidMount() {
     this.loadMap();
-    this.addMarkers(this.map);
+    // this.addMarkers(this.map);
   }
 
   render() {

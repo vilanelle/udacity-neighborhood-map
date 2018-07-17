@@ -3,6 +3,7 @@ import "./App.css";
 import Map from "./components/map-component/Map";
 import MatDialog from "./components/map-component/MatDialog";
 import * as Api from "./helpers/api/foursquareApiFunctions";
+import ResponsiveDrawer from './components/sidebar-component/Sidebar';
 
 class App extends Component {
   state = {
@@ -83,7 +84,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Map venues={this.state.venues} getVenueId={this.getVenueId} />
+        {/* <Map venues={this.state.venues} getVenueId={this.getVenueId} /> */}
+        <ResponsiveDrawer />
         <MatDialog ref="dialog" />
       </div>
     );
