@@ -29,12 +29,10 @@ export const getVenueDetails = (venueId) => {
 
   return request(options)
   .then((res) => {
-    console.log(res)
     const venueData = mapJsonResponse(res);
-    return new Promise(function(resolve, reject) {
+    return new Promise(function(resolve) {
       resolve(venueData);
   });
   })
-  .catch(err => console.log(err))
-
-};
+  .catch(err => console.error(err));
+}

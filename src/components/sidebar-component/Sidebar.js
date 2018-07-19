@@ -12,46 +12,8 @@ import Divider from '@material-ui/core/Divider';
 import Map from '../map-component/Map';
 import Icon from '@material-ui/core/Icon';
 
-const drawerWidth = 240;
+import * as drawerStyles from '../../variables/styles';
 
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    height: 430,
-    zIndex: 99,
-    overflow: 'hidden',
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    display: 'flex',
-    width: '100%',
-    height: '100%'
-  },
-  appBar: {
-    position: 'absolute',
-    marginLeft: drawerWidth,
-    [theme.breakpoints.up('md')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-    },
-  },
-  navIconHide: {
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-    [theme.breakpoints.up('md')]: {
-      position: 'relative',
-    },
-  },
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
-  },
-});
 
 class ResponsiveDrawer extends React.Component {
   state = {
@@ -63,22 +25,25 @@ class ResponsiveDrawer extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, venues, getVenueId } = this.props;
 
     const drawer = (
       <div>
         <div className={classes.toolbar} />
-        <Divider />
-        <List>List items</List>
-        <Divider />
-        <List>More list items</List>
-      </div>
+        {venues.map((venue, index) => {
+          return (<div key={index}>
+                    <Divider />
+                    <List>{venue.name}</List>
+                  </div>
+          )
+        })}
+        </div>
     );
 
     return (
       <div className={classes.root}>
-        <AppBar className={classes.appBar}>
-          <Toolbar>
+        <AppBar className={classes.appBar}> 
+           <Toolbar>
             <IconButton
               color="inherit"
               aria-label="Open drawer"
@@ -120,7 +85,7 @@ class ResponsiveDrawer extends React.Component {
           </Drawer>
         </Hidden>
         <main className={classes.content}>
-         <Map/>
+         <Map venues={venues} getVenueId={getVenueId}/>
         </main>
       </div>
     );
@@ -132,4 +97,4 @@ ResponsiveDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+export default withStyles(drawerStyles.styles, { withTheme: true })(ResponsiveDrawer);

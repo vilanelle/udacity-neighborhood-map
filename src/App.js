@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import Map from "./components/map-component/Map";
 import MatDialog from "./components/map-component/MatDialog";
 import * as Api from "./helpers/api/foursquareApiFunctions";
 import ResponsiveDrawer from './components/sidebar-component/Sidebar';
@@ -64,10 +63,9 @@ class App extends Component {
     return Api.getVenueDetails(this.state.dialogData)
       .then((data) => {
        if(data) {
-        this.openMarkerDialog
+        this.openMarkerDialog(data)
        } else {
-     // TODO add error dialog    
-         console.log('A network error has occurred')
+         this.openMarkerDialog({name: 'A network error has occurred :('})
        }
       })
       .catch(err => console.log(err));
@@ -84,8 +82,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <Map venues={this.state.venues} getVenueId={this.getVenueId} /> */}
-        <ResponsiveDrawer />
+        <ResponsiveDrawer venues={this.state.venues} getVenueId={this.getVenueId} />
         <MatDialog ref="dialog" />
       </div>
     );

@@ -41,19 +41,14 @@ class Map extends Component {
     venues.forEach(venue => {
       const marker = new Marker(venue, getVenueId);
       this.markers.push(marker.getDomMarker());
+      map.addObject(marker.getDomMarker())
     });
 
-    // put markers in a container and add them to map
-    const container = new window.H.map.Group({
-      objects: this.markers
-    });
-    map.addObject(container);
-    
   };
 
   componentDidMount() {
     this.loadMap();
-    // this.addMarkers(this.map);
+    this.addMarkers(this.map);
   }
 
   render() {
