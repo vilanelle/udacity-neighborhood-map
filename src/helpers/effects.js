@@ -1,23 +1,14 @@
+const moveUp = el => {
+  el.style.transform += 'translateY(-15px)';
+}
 
-export const fadeInAndOut = el => {
-  let fadeInInterval;
+const moveDown = el => {
+  setTimeout(() => {
+    el.style.transform += 'translateY(15px)'
+  }, 400);
+}
 
-  const fadeIn = () => {
-    el.style.opacity = Number(el.style.opacity) + 0.15;
-
-    if (el.style.opacity >= 1) {
-      clearInterval(fadeInInterval);
-    }
-  };
-
-  const fadeOut = () => {
-    el.style.opacity = Number(el.style.opacity) - 0.15;
-
-    if (el.style.opacity <= 0) {
-      clearInterval(fadeOutInterval);
-      el.style.borderTop = "15px solid #FF7412";
-      fadeInInterval = setInterval(fadeIn, 50);
-    }
-  };
-  const fadeOutInterval = setInterval(fadeOut, 50);
-};
+export const bounce = el => {
+  moveUp(el);
+  moveDown(el);
+}

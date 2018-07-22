@@ -1,4 +1,4 @@
-import { fadeInAndOut } from "../../helpers/effects";
+import { bounce, moveDown } from "../../helpers/effects";
 
 export class Marker {
   domMarker;
@@ -10,18 +10,22 @@ export class Marker {
   }
 
   createMarker = venue => {
-    const domElement = document.createElement("div");
+    const domElement = document.createElement("img");
+    domElement.src = "mapMarker.png";
+    domElement.style.width = '25px';
+    domElement.style.height = '25px';
+    domElement.style.position = 'relative';
+    domElement.style.left = '-25px';
+    domElement.style.top = '-25px';
     domElement.className = "pin";
-    domElement.style.font = "800 0.8rem Helvetica";
-    domElement.style.opacity = "opacity: 1";
     domElement.textContent = venue.name;
     domElement.dataset.venueId = venue.foursquareId;
     // create icon for the marker and add event listener for animation
     const icon = new window.H.map.DomIcon(domElement, {
       onAttach: (clonedElement, icon, domMarker) =>
-        clonedElement.addEventListener("click", e => fadeInAndOut(e.target)),
+        clonedElement.addEventListener("click", e => bounce(e.target)),
       onDetach: (clonedElement, icon, domMarker) =>
-        clonedElement.removeEventListener("click", e => fadeInAndOut(e.target))
+        clonedElement.removeEventListener("click", e => bounce(e.target))
     });
 
     const { lat, lng } = venue;
@@ -34,7 +38,7 @@ export class Marker {
   handleMarkerClick = e => {
     const elementClicked = e.target.icon.i;
     const venueId = elementClicked.dataset.venueId;
-    this.getVenueId(venueId)
+    // this.getVenueId(venueId)
   };
 
   getDomMarker = () => this.domMarker;
