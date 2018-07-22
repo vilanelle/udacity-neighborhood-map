@@ -31,7 +31,14 @@ export const styles = theme => ({
       display: 'none',
     },
   },
-  toolbar: theme.mixins.toolbar,
+  listItem: {
+    padding: 0,
+  },
+  listButton: {
+    width: '100%',
+    padding: '10px',
+    justifyContent: 'flex-start'
+  },
   drawerPaper: {
     width: drawerWidth,
     [theme.breakpoints.up('md')]: {

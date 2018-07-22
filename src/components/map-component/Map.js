@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./Map.css";
 import { mapContainerStyle } from "../../variables";
-import { Marker } from './Marker';
+import { Marker } from '../marker/Marker';
 
 class Map extends Component {
+  
   map;
-  markers = [];
+  markers;
 
   loadMap = () => {
     const platform = new window.H.service.Platform({
@@ -40,14 +41,25 @@ class Map extends Component {
     // loop creating DOM elements for markers
     venues.forEach(venue => {
       const marker = new Marker(venue, getVenueId);
-      this.markers.push(marker.getDomMarker());
+      // this.markers.push(marker.getDomMarker());
       map.addObject(marker.getDomMarker())
     });
-
+    this.markers = map.getObjects();
   };
 
+  removeMarkers = () => {
+    if(this.markers && this.markers.length > 0) {
+      this.markers.forEach(m => this.map.removeObject(m))
+    }
+  }
+  
   componentDidMount() {
     this.loadMap();
+    this.addMarkers(this.map);
+  }
+  
+  componentDidUpdate(prevProps) {
+    this.removeMarkers();
     this.addMarkers(this.map);
   }
 

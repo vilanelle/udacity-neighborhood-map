@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,7 +11,6 @@ import Avatar from '@material-ui/core/Avatar';
 import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Slide from '@material-ui/core/Slide';
-import './Map.css';
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -56,23 +55,7 @@ class SimpleDialog extends React.Component {
             },
           }}
         >
-        
-        {/* <List>
-        <MuiThemeProvider theme={dialogHeaderTheme}>
-          <ListItem className={classes.listItem}>
-            <Avatar src='cud.jpg'></Avatar>
-            <ListItemText primary={venueData.title} />
-          </ListItem>
-        </MuiThemeProvider>
-          <ListItem className={classes.listItem}>
-          <ListItemText  primary={venueData.title} />
-          </ListItem>
-          <ListItem className={classes.listItem}>
-          <ListItemText primary={venueData.title} />
-          </ListItem>
-        </List>
-         */}
-          <List >
+        <List >
           <MuiThemeProvider theme={dialogHeaderTheme}>
             <DialogTitle className={classes.dialogTitle}>
               <Avatar className={classes.avatar} src={venueData.photoUrl && venueData.photoUrl} alt={venueData.name && venueData.name}></Avatar>
