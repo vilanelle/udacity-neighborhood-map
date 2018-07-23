@@ -1,4 +1,4 @@
-import { bounce, moveDown } from "../../helpers/effects";
+import {bounce } from '../../helpers/effects';
 
 export class Marker {
   domMarker;
@@ -8,25 +8,34 @@ export class Marker {
     this.createMarker(venue);
     this.getVenueId = getVenueId;
   }
-
+ 
   createMarker = venue => {
-    const domElement = document.createElement("img");
-    domElement.src = "mapMarker.png";
-    domElement.style.width = '25px';
-    domElement.style.height = '25px';
-    domElement.style.position = 'relative';
-    domElement.style.left = '-25px';
-    domElement.style.top = '-25px';
-    domElement.className = "pin";
-    domElement.textContent = venue.name;
-    domElement.dataset.venueId = venue.foursquareId;
+    // create dom elements for map marker
+    const wrapper = document.createElement("div");
+    wrapper.dataset.venueId = venue.foursquareId;
+    wrapper.style.position = 'relative';
+    wrapper.style.left = '-20px';
+    wrapper.style.top = '-20px';
+    wrapper.id = venue.foursquareId;
+
+    const markerElement = document.createElement("img");
+    markerElement.src = "mapMarker.png";
+    markerElement.style.width = '25px';
+    markerElement.style.height = '25px';
+    markerElement.className = "pin";
+    markerElement.alt = `${venue.name}`;
+
+    const caption = document.createElement('div');
+    caption.textContent = venue.name;
+    caption.style.fontSize = '0.8rem'
+    caption.style.fontWeight = 800;
+    
+    // add marker and caption to wrapper div
+    wrapper.appendChild(markerElement);
+    wrapper.appendChild(caption);
+    
     // create icon for the marker and add event listener for animation
-    const icon = new window.H.map.DomIcon(domElement, {
-      onAttach: (clonedElement, icon, domMarker) =>
-        clonedElement.addEventListener("click", e => bounce(e.target)),
-      onDetach: (clonedElement, icon, domMarker) =>
-        clonedElement.removeEventListener("click", e => bounce(e.target))
-    });
+    const icon = new window.H.map.DomIcon(wrapper);
 
     const { lat, lng } = venue;
     // set marker coordinates & icon
@@ -38,7 +47,7 @@ export class Marker {
   handleMarkerClick = e => {
     const elementClicked = e.target.icon.i;
     const venueId = elementClicked.dataset.venueId;
-    // this.getVenueId(venueId)
+    this.getVenueId(venueId)
   };
 
   getDomMarker = () => this.domMarker;

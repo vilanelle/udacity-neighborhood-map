@@ -8,7 +8,7 @@ class Map extends Component {
   
   map;
   markers;
-
+  
   loadMap = () => {
     const platform = new window.H.service.Platform({
       app_id: "KtfSRNjpHszyGuJKbvI7",
@@ -52,7 +52,7 @@ class Map extends Component {
       this.markers.forEach(m => this.map.removeObject(m))
     }
   }
-  
+ 
   componentDidMount() {
     this.loadMap();
     this.addMarkers(this.map);

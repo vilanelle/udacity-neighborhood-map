@@ -1,11 +1,12 @@
 const moveUp = el => {
-  el.style.transform += 'translateY(-15px)';
+  el.style.transition = 'all 600ms';
+  el.style.transform += 'translateY(-35px)';
 }
 
 const moveDown = el => {
   setTimeout(() => {
-    el.style.transform += 'translateY(15px)'
-  }, 400);
+    el.style.transform += 'translateY(35px)'
+  }, 300);
 }
 
 export const bounce = el => {

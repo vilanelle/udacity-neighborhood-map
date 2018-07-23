@@ -14,6 +14,7 @@ import Map from "../map-component/Map";
 import Icon from "@material-ui/core/Icon";
 import * as drawerStyles from "../../variables/styles";
 import Filter from "../filter-component/Filter";
+import { bounce } from '../../helpers/effects';
 
 class Layout extends React.Component {
   state = {
@@ -30,7 +31,11 @@ class Layout extends React.Component {
 
   handleButtonClick = e => {
     const venueId = e.currentTarget.dataset.key;
-    this.props.getVenueId(venueId);
+    const marker = document.getElementById(venueId).firstChild;
+    bounce(marker);
+    setTimeout(() => {
+      this.props.getVenueId(venueId)
+    }, 610);
   };
   render() {
     const { classes, theme, venues, getVenueId } = this.props;
