@@ -16,8 +16,7 @@ export const getVenueDetails = (venueId) => {
   }
 
   const options = {
-    // uri: `https://api.foursquare.com/v2/venues/${venueId}/`,
-    uri: 'https://jsonplaceholder.typicode.com/posts/1',
+    uri: `https://api.foursquare.com/v2/venues/${venueId}/`,
     qs: {
       client_id: "RHPU1FR2XDCXGDVKGCG2Q5PK4VKIEY1T2BGBRYLYWGDCT4HJ",
       client_secret: "GM1XWJ4GUYIFHTGW30Q0XPCCYYX5DCC1VUJECUORBL30UND4",

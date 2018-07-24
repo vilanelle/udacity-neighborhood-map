@@ -4,29 +4,13 @@ import MatDialog from "./components/dialog-component/MatDialog";
 import * as Api from "./helpers/api/foursquareApiFunctions";
 import Layout from './components/layout-component/Layout';
 import * as CONST from './variables/constants'; 
-// TODOs:
-// - REMOVE API KEY!!!!!!!!!!!!!!!!!!!
-// - add loader/error handling for map load
-// - update markers on scroll to maintain position
-// - refactor drawer into layout and drawer
 
 const initialVenues = CONST.initialVenues;
 
 class App extends Component {
   state = {
     venues: initialVenues,
-    usingMobile: false,
     dialogData: ""
-  };
-
-  checkUserDevice = () => {
-    if (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-    ) {
-      this.setState({ usingMobile: true });
-    }
   };
 
   getVenueId = id => {
@@ -61,10 +45,6 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    this.checkUserDevice();
-  }
-  
   render() {
     return (
       <div className="App">
@@ -73,6 +53,7 @@ class App extends Component {
           getVenueId={this.getVenueId} 
           filterVenueList={this.filterVenueList} />
         <MatDialog ref="dialog" />
+      }
       </div>
     );
   }

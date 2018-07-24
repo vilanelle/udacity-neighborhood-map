@@ -10,12 +10,13 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Hidden from "@material-ui/core/Hidden";
 import Divider from "@material-ui/core/Divider";
-import Map from "../map-component/Map";
 import Icon from "@material-ui/core/Icon";
 import * as drawerStyles from "../../variables/styles";
+import Map from "../map-component/Map";
 import Filter from "../filter-component/Filter";
 import Info from "../info-component/Info";
 import { bounce } from '../../helpers/effects';
+
 
 class Layout extends Component {
   state = {
@@ -38,6 +39,7 @@ class Layout extends Component {
       this.props.getVenueId(venueId)
     }, 610);
   };
+
   render() {
     const { classes, theme, venues, getVenueId } = this.props;
 
@@ -109,7 +111,10 @@ class Layout extends Component {
           </Drawer>
         </Hidden>
         <main className={classes.content}>
-          <Map venues={venues} getVenueId={getVenueId} />
+          <Map 
+            venues={venues} 
+            getVenueId={getVenueId}
+            />
         </main>
       </div>
     );
@@ -118,7 +123,10 @@ class Layout extends Component {
 
 Layout.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
+  venues: PropTypes.array,
+  getVenueId: PropTypes.func,
+  filterVenueList: PropTypes.func,
 };
 
 export default withStyles(drawerStyles.styles, { withTheme: true })(Layout);

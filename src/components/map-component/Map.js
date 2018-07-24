@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./Map.css";
 import { mapContainerStyle } from "../../variables";
-import { Marker } from '../marker/Marker';
+import { Marker } from "../marker/Marker";
 
 class Map extends Component {
-  
   map;
   markers;
-  
+
   loadMap = () => {
     const platform = new window.H.service.Platform({
       app_id: "KtfSRNjpHszyGuJKbvI7",
@@ -21,7 +20,7 @@ class Map extends Component {
       document.getElementById("mapContainer"),
       defaultLayers.normal.map,
       {
-        zoom: 13,
+        zoom: 12,
         center: { lat: 52.2299, lng: 21.0117 }
       }
     );
@@ -32,7 +31,6 @@ class Map extends Component {
       new window.H.mapevents.MapEvents(this.map)
     );
     const ui = window.H.ui.UI.createDefault(this.map, defaultLayers);
-  
   };
   // add marker to map
   addMarkers = map => {
@@ -41,32 +39,29 @@ class Map extends Component {
     // loop creating DOM elements for markers
     venues.forEach(venue => {
       const marker = new Marker(venue, getVenueId);
-      // this.markers.push(marker.getDomMarker());
-      map.addObject(marker.getDomMarker())
+      map.addObject(marker.getDomMarker());
     });
     this.markers = map.getObjects();
   };
 
   removeMarkers = () => {
-    if(this.markers && this.markers.length > 0) {
-      this.markers.forEach(m => this.map.removeObject(m))
+    if (this.markers && this.markers.length > 0) {
+      this.markers.forEach(m => this.map.removeObject(m));
     }
-  }
- 
+  };
+
   componentDidMount() {
-    this.loadMap();
+    this.loadMap(this.props.displayMapOnLoad);
     this.addMarkers(this.map);
   }
-  
+
   componentDidUpdate(prevProps) {
     this.removeMarkers();
     this.addMarkers(this.map);
   }
 
   render() {
-    return(
-      <div id="mapContainer" style={mapContainerStyle} />
-    )
+    return <div id="mapContainer" style={mapContainerStyle} />
   }
 }
 

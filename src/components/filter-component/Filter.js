@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -25,5 +26,9 @@ class Filter extends Component {
         )
     }
 }
+
+Filter.propTypes = {
+    filterVenueList: PropTypes.func
+};
 
 export default withStyles(styles)(Filter);

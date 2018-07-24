@@ -25,7 +25,7 @@ export class Marker {
 
     const caption = document.createElement('div');
     caption.textContent = venue.name;
-    caption.style.fontSize = '1rem'
+    caption.style.fontSize = '0.9rem'
     caption.style.fontWeight = 800;
     
     // add marker and caption to wrapper div
