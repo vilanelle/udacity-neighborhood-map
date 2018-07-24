@@ -7,6 +7,8 @@ A simple app listing Warsaw locals' favorite spots in their city. Give it a try!
 
 To launch the project on your machine:
 * install all project dependencies with `npm install`
+* provide Here Maps Api app id and code
+* provide Foursquare Api client id and secret
 * start the development server with `npm start`
 
 

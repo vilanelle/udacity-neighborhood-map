@@ -10,8 +10,9 @@ class Map extends Component {
 
   loadMap = () => {
     const platform = new window.H.service.Platform({
-      app_id: "KtfSRNjpHszyGuJKbvI7",
-      app_code: "8jAXhLQ2CDItBfi76Hkxyw"
+      // to get the app working get app id and code from HereMaps Api and replace placeholders below
+      app_id: "<HERE_MAPS_APP_ID>",
+      app_code: "<HERE_MAPS_APP_CODE>"
     });
     // obtain the default map types from the platform object:
     const defaultLayers = platform.createDefaultLayers();

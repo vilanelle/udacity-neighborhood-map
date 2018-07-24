@@ -18,8 +18,9 @@ export const getVenueDetails = (venueId) => {
   const options = {
     uri: `https://api.foursquare.com/v2/venues/${venueId}/`,
     qs: {
-      client_id: "RHPU1FR2XDCXGDVKGCG2Q5PK4VKIEY1T2BGBRYLYWGDCT4HJ",
-      client_secret: "GM1XWJ4GUYIFHTGW30Q0XPCCYYX5DCC1VUJECUORBL30UND4",
+      // to get the app working get a client id and code from Foursquare Api and replace placeholders below
+      client_id: "<4SQUARE_CLIENT_ID>",
+      client_secret: "<4SQUARE_CLIENT_CODE>",
       v: "20180323"    
     },
     json: true // Automatically parses the JSON string in the response
