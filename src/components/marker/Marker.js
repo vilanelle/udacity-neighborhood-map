@@ -1,5 +1,3 @@
-import {bounce } from '../../helpers/effects';
-
 export class Marker {
   domMarker;
   getVenueId;
@@ -19,7 +17,7 @@ export class Marker {
     wrapper.id = venue.foursquareId;
 
     const markerElement = document.createElement("img");
-    markerElement.src = "mapMarker.png";
+    markerElement.src = "loc_icon.png";
     markerElement.style.width = '25px';
     markerElement.style.height = '25px';
     markerElement.className = "pin";
@@ -27,7 +25,7 @@ export class Marker {
 
     const caption = document.createElement('div');
     caption.textContent = venue.name;
-    caption.style.fontSize = '0.8rem'
+    caption.style.fontSize = '1rem'
     caption.style.fontWeight = 800;
     
     // add marker and caption to wrapper div

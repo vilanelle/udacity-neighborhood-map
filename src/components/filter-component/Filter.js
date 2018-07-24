@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -8,7 +8,7 @@ const styles = theme => ({
     }
   });
 
-class Filter extends React.Component {
+class Filter extends Component {
     handleInputChange = (e) => {
             const query = e.target.value;
             this.props.filterVenueList(query);

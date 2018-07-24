@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -14,9 +14,10 @@ import Map from "../map-component/Map";
 import Icon from "@material-ui/core/Icon";
 import * as drawerStyles from "../../variables/styles";
 import Filter from "../filter-component/Filter";
+import Info from "../info-component/Info";
 import { bounce } from '../../helpers/effects';
 
-class Layout extends React.Component {
+class Layout extends Component {
   state = {
     mobileOpen: false
   };
@@ -59,6 +60,7 @@ class Layout extends React.Component {
             </Fragment>
           );
         })}
+        <Info />
       </div>
     );
 

@@ -32,8 +32,8 @@ class Map extends Component {
       new window.H.mapevents.MapEvents(this.map)
     );
     const ui = window.H.ui.UI.createDefault(this.map, defaultLayers);
+  
   };
-
   // add marker to map
   addMarkers = map => {
     const { venues, getVenueId } = this.props;

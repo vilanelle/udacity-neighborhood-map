@@ -32,12 +32,13 @@ export const styles = theme => ({
     },
   },
   listItem: {
-    padding: 0,
+    padding: 0
   },
   listButton: {
     width: '100%',
     padding: '10px',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    fontSize: "1rem"
   },
   drawerPaper: {
     width: drawerWidth,
